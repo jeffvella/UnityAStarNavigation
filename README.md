@@ -9,6 +9,7 @@ An experimental 3D A* navigation system for Unity using burst compiled jobs.
 * Each query can specify its own area weights.
 * Grid nodes can be assigned to many areas.
 * Grid nodes canbe added/removed from areas by volume oriented bounding boxes.
+* Grid nodes can be generated for terrain by mapping to a Unity NavMesh.
 * Custom NativePriorityQueue<T>
 
 <img src="https://i.imgur.com/bDRp9Jv.gif" target="_blank" />
