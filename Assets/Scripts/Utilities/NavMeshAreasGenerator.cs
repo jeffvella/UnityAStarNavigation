@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
+﻿using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.IO;
@@ -19,11 +16,11 @@ namespace UnityEngine.AI
         [Flags]
         public enum NavMeshAreas
         {
-            None = 0,               
-            Walkable = 1, NotWalkable = 2, Jump = 4, 
+            None = 0,
+            Walkable = 1, NotWalkable = 2, Jump = 4,
             All = ~0,
         }
-                                                
+
     #endregion
 
 #if UNITY_EDITOR
@@ -95,7 +92,7 @@ namespace UnityEngine.AI
             return output.ToString();
         }
 
-        private static readonly string ContentTemplate = 
+        private static readonly string ContentTemplate =
         $@"        public enum {nameof(NavMeshAreas)}
         {{
             None = 0,               
@@ -241,7 +238,7 @@ namespace UnityEngine.AI
     /// A helper for flag operations with NavMeshAreas
     /// </summary>
     public struct AreaMask
-    { 
+    {
         private readonly int _value;
 
 
@@ -294,7 +291,7 @@ namespace UnityEngine.AI
         private static Array _areas;
         public static int GetIndex(NavMeshAreas area)
         {
-            return Array.IndexOf(_areas ?? (_areas = Enum.GetValues(typeof(NavMeshAreas))), area)-1;           
+            return Array.IndexOf(_areas ?? (_areas = Enum.GetValues(typeof(NavMeshAreas))), area)-1;
         }
     }
 

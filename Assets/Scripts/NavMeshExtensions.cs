@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using BovineLabs.Entities.Helpers;
 using Unity.Collections;
-using Unity.Collections.LowLevel.Unsafe;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Experimental.AI;
@@ -104,11 +101,11 @@ public static class NavMeshExtensions
         };
 
         return result;
-    }    
+    }
 
     public static float FastDistanceXZ(Vector3 a, Vector3 b)
     {
-        var xD = a.x - b.x;       
+        var xD = a.x - b.x;
         var zD = a.z - b.z;
         return (xD < 0 ? -xD : xD) + (zD < 0 ? -zD : zD);
     }
@@ -189,7 +186,7 @@ public static class NavMeshExtensions
     }
 
     private static void AddOutsideEdge( Vector3 val1, Vector3 val2)
-    {    
+    {
         foreach (var edge in OutsideEdges)
         {
             if (Approx(edge.Start, val1) & Approx(edge.End, val2) || Approx(edge.Start, val2) & Approx(edge.End, val1))
@@ -197,7 +194,7 @@ public static class NavMeshExtensions
                 OutsideEdges.Remove(edge);
                 return;
             }
-        }        
+        }
         OutsideEdges.Add(Edge.FromPoints(val1, val2));
     }
 

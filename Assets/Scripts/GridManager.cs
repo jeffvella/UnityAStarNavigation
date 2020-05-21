@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Providers.Grid;
 using UnityEngine;
@@ -74,7 +73,7 @@ public class GridManager : MonoBehaviour
                 if (node.HasFlag(NodeFlags.Avoidance))
                 {
                     DebugExtension.DebugWireSphere(Grid.ToWorldPosition(node.NavigableCenter), UnityColors.OrangeRed, 0.1f);
-              
+
                 }
                 else if (node.HasFlag(NodeFlags.NearEdge))
                 {
@@ -91,7 +90,7 @@ public class GridManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (Grid != null)
-        {          
+        {
             Gizmos.matrix = Grid.Transform.ToWorldMatrix;
 
             if (ShowGridBounds)

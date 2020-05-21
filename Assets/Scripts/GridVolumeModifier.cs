@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Numerics;
-using Navigation.Scripts.Region;
 using Providers.Grid;
-using Vella.Common.Navigation;
-using Unity.Mathematics;
 using UnityEngine;
 using Vella.SimpleBurstCollision;
-using Debug = UnityEngine.Debug;
 using Vector3 = UnityEngine.Vector3;
 
 [ExecuteInEditMode]
@@ -114,9 +107,9 @@ public class GridVolumeModifier : MonoBehaviour
 
         RestoreNodes(_touchedNodes);
     }
-   
+
     private void RestoreNodes(IList<GridNode> previousSet, IList<GridNode> newSet = null)
-    {        
+    {
         var orphans = newSet != null
             ? previousSet.Except(newSet, GridPointComparer.Instance)
             : previousSet;

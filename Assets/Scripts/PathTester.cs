@@ -1,23 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Providers.Grid;
-using Vella.Common.Collections;
 using Vella.Common.Navigation;
 using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Experimental.GlobalIllumination;
 using Debug = UnityEngine.Debug;
 
 #if UNITY_EDITOR
-using UnityEditor;
-using UnityEditor.SceneManagement;
+
 #endif
 
 [ExecuteInEditMode]
@@ -63,7 +54,7 @@ public class PathTester : MonoBehaviour
 
     void OnEnable()
     {
-        _startRenderer = StartTransform.GetComponent<Renderer>();        
+        _startRenderer = StartTransform.GetComponent<Renderer>();
         _endRenderer = EndTransform.GetComponent<Renderer>();
 
         _mat = new Material(Shader.Find("Specular"));
@@ -85,7 +76,7 @@ public class PathTester : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     private Vector3 _lastStartTransformPosition;
@@ -133,7 +124,7 @@ public class PathTester : MonoBehaviour
 
         if (_endRenderer != null)
         {
-            _endRenderer.sharedMaterial.color = LineColor;        
+            _endRenderer.sharedMaterial.color = LineColor;
         }
 
         if (GridManager != null && GridManager.Grid != null)
@@ -145,7 +136,7 @@ public class PathTester : MonoBehaviour
                     Areas = Areas,
                     Grid = GridManager.Grid,
                 };
-            }    
+            }
 
             _closestNode = GridManager.Grid.FindClosestNode(StartTransform.position, AllowedFlags, 20);
             if (_closestNode.Equals(default))
@@ -169,8 +160,8 @@ public class PathTester : MonoBehaviour
                 GetPath();
 
                 if (LineRenderer != null)
-                {                 
-                    _cleanedPath = MergeLikeDirectionPathSegments(PathFinder.NodePath);                   
+                {
+                    _cleanedPath = MergeLikeDirectionPathSegments(PathFinder.NodePath);
                     var path = OffsetPath(_cleanedPath, transform.position, PathOffset).ToList();
                     path.Insert(0, StartTransform.position);
                     path.Add(EndTransform.position);
@@ -179,7 +170,7 @@ public class PathTester : MonoBehaviour
 
                     if (LineRenderer.sharedMaterial == null)
                     {
-                        LineRenderer.sharedMaterial = _mat;                
+                        LineRenderer.sharedMaterial = _mat;
                     }
                     else
                     {
@@ -197,7 +188,7 @@ public class PathTester : MonoBehaviour
     public IEnumerable<Vector3> OffsetPath(IEnumerable<GridNode> nodes, Vector3 origin, float amount)
     {
         foreach (var node in nodes)
-        {                        
+        {
             yield return GridManager.Grid.Transform.GetWorldPosition(node.NavigableCenter) + node.Normal * amount;
         }
     }
@@ -205,7 +196,7 @@ public class PathTester : MonoBehaviour
     public IEnumerable<GridNode> MergeLikeDirectionPathSegments(IEnumerable<GridNode> nodes)
     {
         GridNode last = default;
-        Vector3 lastDir = Vector3.zero;        
+        Vector3 lastDir = Vector3.zero;
         foreach (var node in nodes)
         {
             if (last == null)
@@ -219,7 +210,7 @@ public class PathTester : MonoBehaviour
             {
                 yield return node;
             }
-            lastDir = dir;            
+            lastDir = dir;
         }
     }
 
@@ -233,7 +224,7 @@ public class PathTester : MonoBehaviour
             PathFinder.Grid = GridManager.Grid;
         }
 
-        PathFinder.Clear();         
+        PathFinder.Clear();
         PathFinder.AllowFlags = (ulong)AllowedFlags;
         PathFinder.GetPath(_closestNode, _exitNode);
 
@@ -248,9 +239,9 @@ public class PathTester : MonoBehaviour
     void OnDrawGizmos()
     {
         if (!_closestNode.Equals(default) && !_exitNode.Equals(default))
-        {            
+        {
             if (PathFinder.NodePath != null && PathFinder.NodePath.Count > 0)
-            {                                   
+            {
                 if (ShowGizmoPath)
                 {
                     var firstNode = PathFinder.NodePath.First();
@@ -273,7 +264,7 @@ public class PathTester : MonoBehaviour
 
                     Gizmos.DrawLine(StartTransform.position, firstPathPosition + offset);
                     Gizmos.DrawLine(EndTransform.position, lastPathPosition + offset);
-                }   
+                }
             }
         }
 
