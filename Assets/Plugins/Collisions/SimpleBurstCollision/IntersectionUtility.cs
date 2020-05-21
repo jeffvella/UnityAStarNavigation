@@ -5,10 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
-using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
 
 namespace Vella.SimpleBurstCollision
 {
