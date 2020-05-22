@@ -43,7 +43,7 @@ public class PathTester : MonoBehaviour
 
     void Awake()
     {
-
+        GridManager = GameObject.Find("GridManager").GetComponent<GridManager>();
     }
 
     private void Updated()
