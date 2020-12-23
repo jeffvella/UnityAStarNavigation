@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Unity.Collections;
 using Unity.Mathematics;
-using Unity.Properties;
 using UnityEngine;
 
 namespace Vella.SimpleBurstCollision

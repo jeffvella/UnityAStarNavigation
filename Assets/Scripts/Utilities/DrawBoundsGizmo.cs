@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
+﻿using Unity.Mathematics;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -17,7 +15,7 @@ public class DrawBoundsGizmo : MonoBehaviour
     public Color ActualBoxColor = UnityColors.DodgerBlue;
 
     void OnDrawGizmos()
-    {        
+    {
         if (ShowDuringPlay && Application.isPlaying || ShowInEditor && !Application.isPlaying)
         {
             var collider = GetComponent<Collider>();
@@ -71,7 +69,7 @@ public class DrawBoundsGizmo : MonoBehaviour
     };
 
     private static void DrawCube(Vector3 center, Vector3 extents, float4x4 matrix)
-    {        
+    {
         var points = GetTransformedPoints(center, extents, matrix);
         Gizmos.DrawLine(points[0], points[1]);
         Gizmos.DrawLine(points[1], points[3]);

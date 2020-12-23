@@ -14,4 +14,4 @@ An experimental 3D A* navigation system for Unity using burst compiled jobs.
 
 <img src="https://i.imgur.com/bDRp9Jv.gif" target="_blank" />
 
-Note: Project was created with Unity 2019.2, older versions may not work.
+Note: Project was created with Unity 2019.3, older versions may not work.
